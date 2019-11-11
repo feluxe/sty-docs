@@ -2,9 +2,11 @@
 
 ## Description
 
-This repo contains [sty](https://github.com/feluxe/sty)'s documentation website: http://sty.mewo.dev
+This repo contains the _source_ for [sty](https://github.com/feluxe/sty)'s documentation website: http://sty.mewo.dev
 
-The documentation website is build with sphinx.
+The website is created with a static-site-generator named [Sphinx](https://www.sphinx-doc.org).
+
+The resulting builds are deployed via github-pages using this repo: https://github.com/feluxe/sty-docs-dist
 
 ## Developing / Writing Docs
 
@@ -24,8 +26,10 @@ The build script comes with a small command line interface, which you can access
 $ pipenv run python make.py
 ```
 
-Run this command to get further information:
+Use this command to build the website:
 
 ```
-$ pipenv run python make.py --help
+$ pipenv run python make.py build
 ```
+
+Open `./build/index.html` in your browser to see the result.

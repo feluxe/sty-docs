@@ -8,6 +8,7 @@ __pycache__/
 .env
 *.pyc
 /build/
+build/
 dist/
 .mypy_cache
 sty-docs.egg-info/
