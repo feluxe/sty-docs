@@ -83,16 +83,16 @@ def build(cfg: Cfg):
     build_html_dir = 'sphinx/_build/html'
 
     if os.path.isfile(f"{build_html_dir}/index.html"):
-        shutil.rmtree('docs', ignore_errors=True)
-        shutil.copytree(build_html_dir, 'docs')
+        shutil.rmtree('build', ignore_errors=True)
+        shutil.copytree(build_html_dir, 'build')
         shutil.rmtree(build_html_dir, ignore_errors=True)
-        shutil.copyfile('sphinx/CNAME', 'docs/CNAME')
+        shutil.copyfile('sphinx/CNAME', 'build/CNAME')
 
     # Remove modernizer
     # This is needed to reduce flickering on page load until this is fixed:
     # https://github.com/readthedocs/sphinx_rtd_theme/issues/724
 
-    for html_file in glob("./docs/**/*.html", recursive=True):
+    for html_file in glob("./build/**/*.html", recursive=True):
         print(html_file)
         data = ""
         with open(html_file, 'r') as fr:
@@ -116,7 +116,7 @@ def deploy(cfg: Cfg):
         sp.run(['git', 'remote', 'set-url', 'origin', dist_repo_url], cwd='dist')
         sp.run(['git', 'pull', 'origin', 'master'], cwd='dist')
 
-    copy_tree('docs', 'dist')
+    copy_tree('build', 'dist')
 
     sp.run(['git', 'add', '-A'], cwd='dist')
 
