@@ -1,0 +1,22 @@
+
+sphinx/_build/
+sty/
+docs/
+
+# Python
+__pycache__/
+.env
+*.pyc
+/build/
+dist/
+.mypy_cache
+sty-docs.egg-info/
+
+# Ediors
+.vscode
+.history
+*.iml
+.idea/
+.swp
+
+

@@ -1,0 +1,11 @@
+name: sty-docs
+version: 0.0.0
+license: ???
+author: Felix Meyer-Wolters
+author_email: felix@meyerwolters.de
+maintainer: Felix Meyer-Wolters
+maintainer_email: felix@meyerwolters.de
+url: https://github.com/feluxe/sty-docs
+description: ''
+keywords:
+- styling
