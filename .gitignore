@@ -1,7 +1,6 @@
 
 sphinx/_build/
 sty/
-docs/
 
 # Python
 __pycache__/
