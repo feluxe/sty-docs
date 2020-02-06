@@ -33,14 +33,16 @@ The code above will print like this in the terminal:
 A quick look at the primitives:
 -------------------------------
 
-sty provides a bunch of tiny, but flexible primitives (called register-objects) that can be used to style your strings:
+sty provides a bunch of tiny, but flexible primitives (called register-objects)
+that can be used to style your strings:
 
 * ``ef`` (:ref:`effect-register <anchor_effect_register>`)
 * ``fg`` (:ref:`foreground-register <anchor_fg_register>`)
 * ``bg`` (:ref:`background-register <anchor_bg_register>`)
 * ``rs`` (:ref:`reset-register <anchor_reset_register>`)
 
-Each register-object carries a default selection of attributes, which you can select like this:
+Each register-object carries a default selection of attributes, which you can
+select like this:
 
 
 .. code:: python
