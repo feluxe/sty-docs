@@ -9,7 +9,7 @@ Muting
    sty.bg, sty.ef, sty.rs) directly, because that might cause conflicts
    with other packages that share the same sty dependency.
 
-   If you want to mute sty's register-obejcts in a *library* you should either:
+   If you want to mute sty's register-objects in a *library* you should either:
 
    * Use the :ref:`copy method <copy_method>` to create copies of them, which
      you can mute safely.

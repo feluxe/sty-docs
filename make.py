@@ -19,16 +19,21 @@ Options:
   <rev>         Git revision from sty repo.
   -h, --help    Show this screen.
 """
-import shutil
+import sys
 import os
+sys.path.insert(0, os.path.abspath('./sty'))
+import sty
+from sty import fg
+
+import shutil
 import subprocess as sp
 from cmdi import print_summary
 from buildlib import git, wheel, project, yaml
 from docopt import docopt
-from sty import fg
 import prmt
 from distutils.dir_util import copy_tree
 from glob import glob
+
 
 proj = yaml.loadfile('Project')
 
@@ -49,7 +54,8 @@ def update_src(rev):
     if not os.path.exists('sty/.git'):
         sp.run(['git', 'clone', 'https://github.com/feluxe/sty.git'])
     else:
-        sp.run(['git', 'fetch', 'origin', 'master'], cwd='sty')
+        # sp.run(['git', 'fetch', 'origin', 'master'], cwd='sty')
+        sp.run(['git', 'pull', 'origin', 'master'], cwd='sty')
 
     sp.run(['git', 'checkout', rev or 'master'], cwd='sty')
     _save_git_hash()
@@ -72,9 +78,8 @@ def build(cfg: Cfg):
 
     if not os.path.exists('sty/.git'):
         sp.run(['git', 'clone', 'https://github.com/feluxe/sty.git'])
-        sp.run(['git', 'checkout', rev], cwd='sty')
-    else:
-        sp.run(['git', 'checkout', rev], cwd='sty')
+
+    sp.run(['git', 'checkout', rev], cwd='sty')
 
     # Build Static Page with Sphinx
 
@@ -147,8 +152,11 @@ def run():
     args = docopt(__doc__)
     results = []
 
-    if args['update'] and args['src']:
+    # We must uninstall sty in order to make this script and sphix import sty from the
+    # subdirectory ./sty and not from site-packages.
+    sp.run(["pipenv", "uninstall", "sty", "--skip-lock"])
 
+    if args['update'] and args['src']:
         results.append(update_src(args['<rev>']))
 
     if args['build']:

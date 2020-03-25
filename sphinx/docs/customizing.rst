@@ -59,7 +59,7 @@ These are the render-types, which you can use to create custom styles:
 
 
 
-Changing the render-functions for a register-obejct
+Changing the render-functions for a register-object
 ---------------------------------------------------
 
 If you want to fix compatibility issues with old terminals, you might want to customize the render-functions.
@@ -112,7 +112,7 @@ Customizing sty this way has some advantages:
 A register-class from scratch
 -----------------------------
 
-This example show how to create a complete register class from scratch, including custom render-functions:
+This example shows how to create a complete register class from scratch, including custom render-functions:
 
 .. literalinclude:: ../../sty/tests/docs/customizing.py
    :language: py

@@ -25,7 +25,7 @@ ef.underl (alias u) Underline..                  sty.renderfunc.sgr(4)
 ef.blink            Blink..                      sty.renderfunc.sgr(5)
 ef.inverse          Inverse fore- and background sty.renderfunc.sgr(7)
 ef.hidden           Conceal/Hide                 sty.renderfunc.sgr(8)
-ef.strike           Strike-trhough               sty.renderfunc.sgr(9)
+ef.strike           Strike-through               sty.renderfunc.sgr(9)
 =================== ============================ =====================
 
 Italic
@@ -67,5 +67,5 @@ Underline
 TODO:
 ~~~~~
 
-Add examples for, strike, blink, etc..
+Add examples for strike, blink, etc..
 

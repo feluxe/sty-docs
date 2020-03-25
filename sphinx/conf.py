@@ -2,10 +2,12 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../'))
-
 import yaml
+sys.path.insert(0, os.path.abspath('../sty'))
 import sty
+
+
+
 
 # -- Project information -----------------------------------------------------
 
@@ -119,3 +121,4 @@ html_theme_options = {
     'includehidden': True,
     'titles_only': False,
 }
+
