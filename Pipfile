@@ -3,7 +3,6 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
 docopt = "*"
 munch = "*"
@@ -13,12 +12,11 @@ sphinx-autodoc-typehints = "*"
 doc8 = "*"
 buildlib = "==3.0.0"
 
-
-
 [dev-packages]
 pylint = "*"
 yapf = "*"
 mypy = "*"
+rstcheck = "*"
 
 [requires]
 python_version = "3.7"
