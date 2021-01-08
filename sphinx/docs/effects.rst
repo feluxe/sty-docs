@@ -18,15 +18,17 @@ These are the default attributes for the ``sty.ef`` register-object.
 =================== ============================ =====================
 Attribute           Description                  Default Renderer
 =================== ============================ =====================
-ef.bold (alias b)   Bold or increased intensity  sty.renderfunc.sgr(1)
-ef.dim              Decreased intensity          sty.renderfunc.sgr(2)
-ef.italic (alias i) Italic..                     sty.renderfunc.sgr(3)
-ef.underl (alias u) Underline..                  sty.renderfunc.sgr(4)
-ef.blink            Blink..                      sty.renderfunc.sgr(5)
-ef.inverse          Inverse fore- and background sty.renderfunc.sgr(7)
-ef.hidden           Conceal/Hide                 sty.renderfunc.sgr(8)
-ef.strike           Strike-through               sty.renderfunc.sgr(9)
+ef.bold (alias b)   Bold or increased intensity  sgr(1)
+ef.dim              Decreased intensity          sgr(2)
+ef.italic (alias i) Italic..                     sgr(3)
+ef.underl (alias u) Underline..                  sgr(4)
+ef.blink            Blink..                      sgr(5)
+ef.inverse          Inverse fore- and background sgr(7)
+ef.hidden           Conceal/Hide                 sgr(8)
+ef.strike           Strike-through               sgr(9)
+ef.rs               Reset effects                sgr(22), sgr(23), sgr(24), sgr(25), sgr(27), sgr(28), sgr(29)
 =================== ============================ =====================
+
 
 Italic
 ~~~~~~

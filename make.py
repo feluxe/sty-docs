@@ -19,23 +19,25 @@ Options:
   <rev>         Git revision from sty repo.
   -h, --help    Show this screen.
 """
-import sys
 import os
-sys.path.insert(0, os.path.abspath('./sty'))
-import sty
-from sty import fg
+import sys
 
+sys.path.insert(0, os.path.abspath('./sty'))
 import shutil
 import subprocess as sp
-from cmdi import print_summary
-from buildlib import git, wheel, project, yaml
-from docopt import docopt
-import prmt
 from distutils.dir_util import copy_tree
 from glob import glob
 
+import prmt
+import toml
+from buildlib import git, project, wheel
+from cmdi import print_summary
+from docopt import docopt
 
-proj = yaml.loadfile('Project')
+import sty
+from sty import fg
+
+proj = toml.load('pyproject.toml')["mewo_project"]
 
 
 class Cfg:
@@ -74,7 +76,7 @@ def build(cfg: Cfg):
     # Get sty's source
 
     with open('sty_src_hash', 'r') as f:
-        rev = f.read()
+        rev = f.read().strip()
 
     if not os.path.exists('sty/.git'):
         sp.run(['git', 'clone', 'https://github.com/feluxe/sty.git'])

@@ -2,12 +2,11 @@
 #
 import os
 import sys
-import yaml
+
+import toml
+
 sys.path.insert(0, os.path.abspath('../sty'))
 import sty
-
-
-
 
 # -- Project information -----------------------------------------------------
 
@@ -17,9 +16,7 @@ author = 'Felix Meyer-Wolters'
 
 
 def get_version():
-    with open('../sty/Project', 'r') as f:
-        data = yaml.safe_load(f.read())
-    return data.get('version') or ''
+    return toml.load("../sty/pyproject.toml")["mewo_project"]["version"]
 
 
 # The short X.Y version

@@ -17,15 +17,16 @@ These are the default attributes for the ``sty.rs`` register-object:
 =================== ======================
 Attribute           Default Renderer
 =================== ======================
-rs.all              sty.renderfunc.sgr(0)
-rs.fg               sty.renderfunc.sgr(39)
-rs.bg               sty.renderfunc.sgr(49)
-rs.bold_faint       sty.renderfunc.sgr(22)
-rs.faint_bold       sty.renderfunc.sgr(22)
-rs.italic (alias i) sty.renderfunc.sgr(23)
-rs.underl (alias u) sty.renderfunc.sgr(24)
-rs.blink            sty.renderfunc.sgr(25)
-rs.hidden           sty.renderfunc.sgr(28)
-rs.strike           sty.renderfunc.sgr(29)
+rs.all              sgr(0)
+rs.fg               sgr(39)
+rs.bg               sgr(49)
+rs.bold_faint       sgr(22)
+rs.faint_bold       sgr(22)
+rs.italic (alias i) sgr(23)
+rs.underl (alias u) sgr(24)
+rs.blink            sgr(25)
+rs.hidden           sgr(28)
+rs.strike           sgr(29)
+rs.ef               sgr(22), sgr(23), sgr(24), sgr(25), sgr(27), sgr(28), sgr(29)
 =================== ======================
 

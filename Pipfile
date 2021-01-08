@@ -6,15 +6,15 @@ name = "pypi"
 [packages]
 docopt = "*"
 munch = "*"
-sphinx = "==2.1.2"
+sphinx = "==3.4.3"
 sphinx-rtd-theme = "==0.4.3"
 sphinx-autodoc-typehints = "*"
 doc8 = "*"
-buildlib = "==3.0.0"
+buildlib = "==3.0.2"
 
 [dev-packages]
 pylint = "*"
-yapf = "*"
+black = "*"
 mypy = "*"
 rstcheck = "*"
 

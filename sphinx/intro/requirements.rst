@@ -1,5 +1,5 @@
 Requirements
 ------------
 
-Sty requires Python ``>= 3.6``
+Sty requires Python ``>= 3.7``
 

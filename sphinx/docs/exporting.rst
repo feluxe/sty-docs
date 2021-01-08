@@ -11,7 +11,7 @@ Exporting / Copying
 
 **Example:**
 
-.. literalinclude:: ../../sty/tests/docs/exporting.py
+.. literalinclude:: ../../sty/tests/docs/etc.py
    :language: py
    :start-after: Example("as dict")
    :end-before: # ===== End
@@ -25,7 +25,7 @@ Exporting / Copying
 
 **Example:**
 
-.. literalinclude:: ../../sty/tests/docs/exporting.py
+.. literalinclude:: ../../sty/tests/docs/etc.py
    :language: py
    :start-after: Example("as namedtuple")
    :end-before: # ===== End
@@ -44,7 +44,7 @@ register-classes (sty.fg., sty.bg, sty.ef, sty.rs).
 
 **Example:**
 
-.. literalinclude:: ../../sty/tests/docs/exporting.py
+.. literalinclude:: ../../sty/tests/docs/etc.py
    :language: py
    :start-after: Example("copy")
    :end-before: # ===== End
