@@ -57,7 +57,8 @@ def update_src(rev):
         sp.run(['git', 'clone', 'https://github.com/feluxe/sty.git'])
     else:
         # sp.run(['git', 'fetch', 'origin', 'master'], cwd='sty')
-        sp.run(['git', 'pull', 'origin', 'master'], cwd='sty')
+        sp.run(['git', 'fetch', 'origin'], cwd='sty')
+        sp.run(['git', 'reset', '--hard', 'origin/master'], cwd='sty')
 
     sp.run(['git', 'checkout', rev or 'master'], cwd='sty')
     _save_git_hash()
@@ -80,6 +81,8 @@ def build(cfg: Cfg):
 
     if not os.path.exists('sty/.git'):
         sp.run(['git', 'clone', 'https://github.com/feluxe/sty.git'])
+
+    sp.run(['git', 'fetch', '--all', 'origin', 'master'], cwd='sty')
 
     sp.run(['git', 'checkout', rev], cwd='sty')
 
@@ -121,7 +124,8 @@ def deploy(cfg: Cfg):
         sp.run(['git', 'clone', dist_repo_url, 'dist'])
     else:
         sp.run(['git', 'remote', 'set-url', 'origin', dist_repo_url], cwd='dist')
-        sp.run(['git', 'pull', 'origin', 'master'], cwd='dist')
+        sp.run(['git', 'fetch', 'origin'], cwd='dist')
+        sp.run(['git', 'reset', '--hard', 'origin/master'], cwd='dist')
 
     copy_tree('build', 'dist')
 
