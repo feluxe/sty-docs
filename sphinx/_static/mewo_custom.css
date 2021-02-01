@@ -76,6 +76,11 @@ a.icon-home {
   border-right: 1px solid #dcdfe3;
 }
 
+#rtd-search-form input {
+  background: #81B5D9;
+  box-shadow: none;
+}
+
 .toctree-l1 {
   margin-left: 5px;
 }
