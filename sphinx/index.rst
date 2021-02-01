@@ -42,21 +42,21 @@ Description
 
 ------------
 
-Simple, flexible and extensible string styling for your terminal.
-Supports 3/4bit, 8bit and 24bit (truecolor, rgb) colors. Should work on most
-Unix platfroms with most terminals. Works with recent Windows terminals. Window
-legacy terminal (cmd) needs a `shim <https://github.com/feluxe/sty/issues/2#issuecomment-501890699>`__ to work.
-
-
-Sty comes with default color palettes and renderers, but you can easily
-replace/customize them, without touching the markup.
-
-Sty's goal is to provide Python with a little string styling markup, which
+Sty's goal is to provide Python with a simple, customizable and performant string styling markup, which
 is decoupled from color palettes and terminal implementations.
 
-Sty has no dependencies.
+* Sty supports 3/4bit, 8bit and 24bit (truecolor/RGB) colors as well as effects like `bold`, `italic`, `underline`, etc.
+* Sty should work on most Unix platforms with most terminals. It works with recent Windows terminals. Window legacy terminal (cmd) needs a `shim <https://github.com/feluxe/sty/issues/2#issuecomment-501890699>`__ to work.
+* Sty comes with default color palettes and renderers, but you can easily replace/customize them, without touching the markup in your code.
+* Sty allows you to mute/unmute all styles in your codebase.
+* Sty provides high access performance for all styling rules.
+* Sty is fully typed, you should get good editor support for it.
+* Sty has no dependencies.
+* Sty follows `semver <https://semver.org/>`__
+* Sty will support Python `>=3.7` for as long as possible.
 
 If you run into compatibility problems with sty, please file an `issue <https://github.com/feluxe/sty/issues>`__!
+
 
 
 Code Example
