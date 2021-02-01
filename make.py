@@ -82,9 +82,10 @@ def build(cfg: Cfg):
     if not os.path.exists('sty/.git'):
         sp.run(['git', 'clone', 'https://github.com/feluxe/sty.git'])
 
-    sp.run(['git', 'fetch', '--all', 'origin', 'master'], cwd='sty')
+    # sp.run(['git', 'fetch', '--all', 'origin', 'master'], cwd='sty')
 
-    sp.run(['git', 'checkout', rev], cwd='sty')
+    # sp.run(['git', 'checkout', rev], cwd='sty')
+    sp.run(['git', 'reset', '--hard', rev], cwd='sty')
 
     # Build Static Page with Sphinx
 
@@ -102,18 +103,18 @@ def build(cfg: Cfg):
     # This is needed to reduce flickering on page load until this is fixed:
     # https://github.com/readthedocs/sphinx_rtd_theme/issues/724
 
-    for html_file in glob("./build/**/*.html", recursive=True):
-        print(html_file)
-        data = ""
-        with open(html_file, 'r') as fr:
-            for line in fr:
-                if 'modernizr.min.js"' not in line and \
-                   'js/theme.js' not in line:
+    # for html_file in glob("./build/**/*.html", recursive=True):
+    #     print(html_file)
+    #     data = ""
+    #     with open(html_file, 'r') as fr:
+    #         for line in fr:
+    #             if 'modernizr.min.js"' not in line and \
+    #                'js/theme.js' not in line:
 
-                    data += line
+    #                 data += line
 
-        with open(html_file, 'w') as fw:
-            fw.write(data)
+    #     with open(html_file, 'w') as fw:
+    #         fw.write(data)
 
 
 def deploy(cfg: Cfg):
