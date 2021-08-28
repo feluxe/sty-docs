@@ -14,6 +14,14 @@
 News
 ===========
 
+Release 1.0.0-rc.2 (August 28. 2021)
+-------------------------------------
+
+* Fix typo in "reset" register.
+
+`Release Note (Breaking Changes) <https://github.com/feluxe/sty/releases/tag/1.0.0-rc.2>`__
+
+
 
 Release 1.0.0-rc.1 (January 31. 2021)
 -------------------------------------
