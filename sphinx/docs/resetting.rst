@@ -20,6 +20,7 @@ Attribute           Default Renderer
 rs.all              sgr(0)
 rs.fg               sgr(39)
 rs.bg               sgr(49)
+rs.ef               sgr(22), sgr(23), sgr(24), sgr(25), sgr(27), sgr(28), sgr(29)
 rs.bold_faint       sgr(22)
 rs.faint_bold       sgr(22)
 rs.italic (alias i) sgr(23)
@@ -27,6 +28,5 @@ rs.underl (alias u) sgr(24)
 rs.blink            sgr(25)
 rs.hidden           sgr(28)
 rs.strike           sgr(29)
-rs.ef               sgr(22), sgr(23), sgr(24), sgr(25), sgr(27), sgr(28), sgr(29)
 =================== ======================
 
