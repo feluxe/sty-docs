@@ -12,25 +12,26 @@ h6,
 h7,
 .rst-content,
 .toctree-wrapper,
-p.caption,
+p.caption-text,
+span.caption-text,
 legend {
   font-family: Arial, sans-serif !important;
 }
 
 h1 {
-  font-size: 32px;
-  margin-top: 30px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #cccccc;
+  font-size: 32px !important;
+  margin-top: 30px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid #cccccc !important;
 }
 
 h2 {
-  margin-top: 35px;
-  margin-bottom: 30px;
+  margin-top: 35px !important;
+  margin-bottom: 30px !important;
 }
 
 h3 {
-  margin-top: 30px;
+  margin-top: 30px !important;
 }
 
 p {
@@ -38,7 +39,7 @@ p {
 }
 
 li {
-  padding-left: 10px;
+  padding-left: 3px;
 }
 
 pre {
@@ -203,7 +204,7 @@ nav.wy-nav-side {
 }
 /*
 
-h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend {
+h1, h2, .rst-content .toctree-wrapper p.caption-text, h3, h4, h5, h6, legend {
     font-family: sans-serif;
 }
 
@@ -304,8 +305,8 @@ ul.simple li p {
   margin-bottom: 3px !important;
 }
 
-.rst-content .section > img,
-.rst-content .section > a > img {
+.rst-content section > img,
+.rst-content section > a > img {
   margin-top: 10px;
   margin-bottom: 10px;
 }
