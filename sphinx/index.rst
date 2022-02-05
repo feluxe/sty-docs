@@ -6,7 +6,7 @@
 
 
 .. image:: ../assets/logo_readme.png
-   :alt: charts
+   :alt: sty_logo
 
 |
 
@@ -17,10 +17,21 @@
    </p>
 
 
-|
-
 News
 ===========
+
+Release 1.0.0 (February 05. 2022)
+---------------------------------
+
+Sty v1.0.0 released 🎉
+
+At this point sty can be considered stable.
+
+The "release candidate" phase was given a lot of time and nothing critical was reported for a while.
+All features that are planned for the future are compatible with the existing interfaces.
+
+Nothing changed since `rc.2`.
+
 
 Release 1.0.0-rc.2 (August 28. 2021)
 -------------------------------------
