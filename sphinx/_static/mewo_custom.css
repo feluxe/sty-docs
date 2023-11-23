@@ -757,3 +757,8 @@ table.table-color-bg tr:nth-child(24) td:nth-child(3) {
   color: black !important;
   background: #f3f6f6 !important;
 }
+
+/* This adds a margin above the sty logo in index.rst */
+.intro-logo {
+  margin-top: 25px;
+}

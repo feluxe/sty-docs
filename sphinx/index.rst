@@ -1,73 +1,53 @@
-
-.. meta::
-   :description: String styling for your terminal
-   :keywords: sty, python, terminal, style, colors, coloring
-   :author: Felix Meyer-Wolters
+..
+   Copy paste the README.rst from github here.
+   WARNING: Do not remove the 'Contents' section below.
 
 
-.. image:: ../assets/logo_readme.png
+.. image:: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_logo_aliased.svg
+   :target: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_logo_aliased.svg
    :alt: sty_logo
+   :width: 30%
+   :class: intro-logo
 
 |
 
-.. raw:: html
+|badge-total-downloads| |badge-monthly-downloads|
 
-   <p float="left">
-      <img src="https://static.pepy.tech/personalized-badge/sty?period=total&units=international_system&left_color=grey&right_color=lightgrey&left_text=downloads" /> &nbsp; <img src="https://static.pepy.tech/personalized-badge/sty?period=month&units=international_system&left_color=grey&right_color=lightgrey&left_text=downloads/month" />
-   </p>
+.. |badge-total-downloads| image:: https://static.pepy.tech/personalized-badge/sty?period=total&units=international_system&left_color=grey&right_color=lightgrey&left_text=downloads
+   :target: https://static.pepy.tech/personalized-badge/sty?period=total&units=international_system&left_color=grey&right_color=lightgrey&left_text=downloads
+   :alt: badge-total-downloads
+
+.. |badge-monthly-downloads| image:: https://static.pepy.tech/personalized-badge/sty?period=month&units=international_system&left_color=grey&right_color=lightgrey&left_text=downloads/month
+   :target: https://static.pepy.tech/personalized-badge/sty?period=month&units=international_system&left_color=grey&right_color=lightgrey&left_text=downloads/month
+   :alt: badge-monthly-downloads
+
+------------
+
+.. image:: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_demo.png
+   :target: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_demo.png
+   :alt: sty_demo
+   :width: 100%
 
 
-News
-===========
-
-Release 1.0.0 (February 05. 2022)
+Release 1.0.5 (November 22. 2023)
 ---------------------------------
 
-Sty v1.0.0 released 🎉
+Code Changes:
 
-At this point sty can be considered stable.
+* Add `py.typed` file for better typing support. Thanks! @Eisfunke
+* Use explicit imports: `from .lib import` is now `from sty.lib import`.
+* More and better doc-strings. `help(x)` should be much more useful now.
 
-The "release candidate" phase was given a lot of time and nothing critical was reported for a while.
-All features that are planned for the future are compatible with the existing interfaces.
+Other:
 
-Nothing changed since `rc.2`.
-
-
-Release 1.0.0-rc.2 (August 28. 2021)
--------------------------------------
-
-* Fix typo in "reset" register.
-
-`Release Note (Breaking Changes) <https://github.com/feluxe/sty/releases/tag/1.0.0-rc.2>`__
-
-
-
-Release 1.0.0-rc.1 (January 31. 2021)
--------------------------------------
-
-* Sty is now fully typed.
-* Deprecated methods `.set_style(...)` and `.get_style(...)` were finally removed.
-
-`Release Note <https://github.com/feluxe/sty/releases/tag/1.0.0-rc.1>`__
-
-
-
-Release 1.0.0-rc.0 (January 08. 2021)
--------------------------------------
-
-Sty version `1.0.0` is now feature complete.
-
-* I'm going to support Python version `>=3.7` indefinitely.
-* Sty will follow `semver` so there won't be any breaking changes for version `1.x.x` after 1.0.0 was released.
-* This is a pre-release (`rc.0`). I'll release `1.0.0` in a couple of month if no major bugs are reported.
-
-`Breaking Changes <https://github.com/feluxe/sty/releases/tag/1.0.0-rc.0>`__
+* Add svg logo. Thanks! @kubinka0505
+* Replace `pipenv` with `poetry`.
+* Remove `make.py` build system.
+* Remove all dev dependencies.
 
 
 Description
-===========
-
-------------
+-----------
 
 Sty's goal is to provide Python with a simple, customizable and performant string styling markup, which
 is decoupled from color palettes and terminal implementations.
@@ -80,42 +60,72 @@ is decoupled from color palettes and terminal implementations.
 * Sty is fully typed, you should get good editor support for it.
 * Sty does not implicitly mess with globals. E.g.: `colorama` overrides `sys.stdout` which causes a lot of trouble.
 * Sty has no dependencies.
-* Sty follows `semver <https://semver.org/>`__
+* Sty follows `semver <https://semver.org/>`__.
 * Sty will support Python `>=3.7` for as long as possible.
 
 If you run into compatibility problems with sty, please file an `issue <https://github.com/feluxe/sty/issues>`__!
 
 
-
 Code Example
-============
-
 ------------
 
-.. literalinclude:: ../sty/tests/docs/getting_started.py
-   :language: py
-   :start-after: Example("gettings started: sty all the strings")
-   :end-before: # ===== End
+.. code:: python
+
+    from sty import fg, bg, ef, rs
+
+    foo = fg.red + 'This is red text!' + fg.rs
+    bar = bg.blue + 'This has a blue background!' + bg.rs
+    baz = ef.italic + 'This is italic text' + rs.italic
+    qux = fg(201) + 'This is pink text using 8bit colors' + fg.rs
+    qui = fg(255, 10, 10) + 'This is red text using 24bit colors.' + fg.rs
+
+    # Add custom colors:
+
+    from sty import Style, RgbFg
+
+    fg.orange = Style(RgbFg(255, 150, 50))
+
+    buf = fg.orange + 'Yay, Im orange.' + fg.rs
+
+    print(foo, bar, baz, qux, qui, buf, sep='\n')
+
 
 The code above will print like this in the terminal:
 
-.. image:: ../assets/example_so.png
-   :alt: example usage
+.. image:: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_example.png
+   :target: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_example.png
+   :alt: example
+   :width: 600px
 
 
-Demo
-====
+You can use the `Register` class or the default registers `FgRegister`, `BgRegister`, `EfRegister` and `RsRegister` to create your own registers:
 
-------------
+.. code:: python
 
-.. image:: ../assets/charts.png
-   :alt: charts
+    # Extending the default FgRegister
+
+    from sty import FgRegister, Style, RgbFg, Sgr
+
+    class MyFgRegister(FgRegister):
+
+        def __init__(self):
+            super().__init__()
+
+            self.purple = Style(Sgr(35))
+            self.blue = Style(Sgr(34))
+            self.orange = Style(RgbFg(255, 128, 0))
+            # ...
+
+     fg = MyFgRegister()
+
+
+
+..
+   WARNING: Keep the following section when copy pasting README.rst
 
 
 Contents
-========
-
-------------
+--------
 
 .. toctree::
    :maxdepth: 1
