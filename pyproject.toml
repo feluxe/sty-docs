@@ -1,3 +1,31 @@
 [mewo_project]
 version = "0.0.0"
 
+[tool.poetry]
+name = "sty-docs"
+version = "0.1.0"
+description = ""
+authors = ["feluxe <felix@meyerwolters.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+docopt = "^0.6.2"
+munch = "^4.0.0"
+sphinx = "4.4.0"
+sphinx-rtd-theme = "1.0.0"
+sphinx-autodoc-typehints = "1.15.3"
+doc8 = "0.10.1"
+buildlib = "3.0.2"
+toml = "^0.10.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.0.2"
+black = "^23.11.0"
+mypy = "^1.7.0"
+rstcheck = "^6.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
