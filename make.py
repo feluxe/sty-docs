@@ -1,6 +1,6 @@
 """
 Install:
-  pipenv install --dev
+  poetry install
 
 Usage:
   make.py update src [<rev>]
@@ -22,7 +22,7 @@ Options:
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('./sty'))
+sys.path.insert(0, os.path.abspath("./sty"))
 import shutil
 import subprocess as sp
 from distutils.dir_util import copy_tree
@@ -37,147 +37,115 @@ from docopt import docopt
 import sty
 from sty import fg
 
-proj = toml.load('pyproject.toml')["mewo_project"]
+proj = toml.load("pyproject.toml")["mewo_project"]
 
 
 class Cfg:
-    version = proj['version']
-    registry = 'pypi'
+    version = proj["version"]
+    registry = "pypi"
 
 
 def _save_git_hash():
-    r = sp.run(['git', 'rev-parse', 'HEAD'], cwd='sty', stdout=sp.PIPE)
-    with open('sty_src_hash', 'w') as f:
-        f.write(r.stdout.decode('utf-8'))
+    r = sp.run(["git", "rev-parse", "HEAD"], cwd="sty", stdout=sp.PIPE)
+    with open("sty_src_hash", "w") as f:
+        f.write(r.stdout.decode("utf-8"))
 
 
 def update_src(rev):
-
-    if not os.path.exists('sty/.git'):
-        sp.run(['git', 'clone', 'https://github.com/feluxe/sty.git'])
+    if not os.path.exists("sty/.git"):
+        sp.run(["git", "clone", "https://github.com/feluxe/sty.git"])
     else:
         # sp.run(['git', 'fetch', 'origin', 'master'], cwd='sty')
-        sp.run(['git', 'fetch', 'origin'], cwd='sty')
-        sp.run(['git', 'reset', '--hard', 'origin/master'], cwd='sty')
+        sp.run(["git", "fetch", "origin"], cwd="sty")
+        sp.run(["git", "reset", "--hard", "origin/master"], cwd="sty")
 
-    sp.run(['git', 'checkout', rev or 'master'], cwd='sty')
+    sp.run(["git", "checkout", rev or "master"], cwd="sty")
     _save_git_hash()
 
 
 def build(cfg: Cfg):
-
-    # q = (
-    #     f"{fg.red}WARNING{fg.rs}\n"
-    #     "Documentation changes and code changes should use seperate commits.\n"
-    #     "Only proceed if there are no uncommited code changes.\n\n"
-    #     "Do you want to build the documentation pages?")
-    # if not prmt.confirm(q, 'n'):
-    #     return
-
     # Get sty's source
 
-    with open('sty_src_hash', 'r') as f:
+    with open("sty_src_hash", "r") as f:
         rev = f.read().strip()
 
-    if not os.path.exists('sty/.git'):
-        sp.run(['git', 'clone', 'https://github.com/feluxe/sty.git'])
+    if not os.path.exists("sty/.git"):
+        sp.run(["git", "clone", "https://github.com/feluxe/sty.git"])
 
-    # sp.run(['git', 'fetch', '--all', 'origin', 'master'], cwd='sty')
-
-    # sp.run(['git', 'checkout', rev], cwd='sty')
-    sp.run(['git', 'reset', '--hard', rev], cwd='sty')
+    sp.run(["git", "reset", "--hard", rev], cwd="sty")
 
     # Build Static Page with Sphinx
 
-    sp.run(['make', 'html'], cwd='sphinx')
+    sp.run(["make", "html"], cwd="sphinx")
 
-    build_html_dir = 'sphinx/_build/html'
+    build_html_dir = "sphinx/_build/html"
 
     if os.path.isfile(f"{build_html_dir}/index.html"):
-        shutil.rmtree('build', ignore_errors=True)
-        shutil.copytree(build_html_dir, 'build')
+        shutil.rmtree("build", ignore_errors=True)
+        shutil.copytree(build_html_dir, "build")
         shutil.rmtree(build_html_dir, ignore_errors=True)
-        shutil.copyfile('sphinx/CNAME', 'build/CNAME')
-
-    # Remove modernizer
-    # This is needed to reduce flickering on page load until this is fixed:
-    # https://github.com/readthedocs/sphinx_rtd_theme/issues/724
-
-    # for html_file in glob("./build/**/*.html", recursive=True):
-    #     print(html_file)
-    #     data = ""
-    #     with open(html_file, 'r') as fr:
-    #         for line in fr:
-    #             if 'modernizr.min.js"' not in line and \
-    #                'js/theme.js' not in line:
-
-    #                 data += line
-
-    #     with open(html_file, 'w') as fw:
-    #         fw.write(data)
+        shutil.copyfile("sphinx/CNAME", "build/CNAME")
 
 
 def deploy(cfg: Cfg):
+    dist_repo_url = "https://github.com/feluxe/sty-docs-dist.git"
 
-    dist_repo_url = 'https://github.com/feluxe/sty-docs-dist.git'
-
-    if not os.path.exists('dist/.git'):
-        sp.run(['git', 'clone', dist_repo_url, 'dist'])
+    if not os.path.exists("dist/.git"):
+        sp.run(["git", "clone", dist_repo_url, "dist"])
     else:
-        sp.run(['git', 'remote', 'set-url', 'origin', dist_repo_url], cwd='dist')
-        sp.run(['git', 'fetch', 'origin'], cwd='dist')
-        sp.run(['git', 'reset', '--hard', 'origin/master'], cwd='dist')
+        sp.run(["git", "remote", "set-url", "origin", dist_repo_url], cwd="dist")
+        sp.run(["git", "fetch", "origin"], cwd="dist")
+        sp.run(["git", "reset", "--hard", "origin/master"], cwd="dist")
 
-    copy_tree('build', 'dist')
+    copy_tree("build", "dist")
 
-    sp.run(['git', 'add', '-A'], cwd='dist')
+    sp.run(["git", "add", "-A"], cwd="dist")
 
     # TODO: Come up with a good commit message here:
-    r = sp.run(['git', 'commit', '-m', 'new build'], cwd='dist', stdout=sp.PIPE)
+    r = sp.run(["git", "commit", "-m", "new build"], cwd="dist", stdout=sp.PIPE)
 
-    if 'nothing to commit' in r.stdout.decode('utf-8'):
+    if "nothing to commit" in r.stdout.decode("utf-8"):
         print("\nThere is nothing new to deploy.")
         return
 
     sp.run(
         [
-            'git',
-            'remote',
-            'set-url',
-            'origin',
-            'git@github.com:feluxe/sty-docs-dist.git',
+            "git",
+            "remote",
+            "set-url",
+            "origin",
+            "git@github.com:feluxe/sty-docs-dist.git",
         ],
-        cwd='dist'
+        cwd="dist",
     )
 
-    sp.run(['git', 'push', 'origin', 'master'], cwd='dist')
+    sp.run(["git", "push", "origin", "master"], cwd="dist")
 
 
 def run():
-
     cfg = Cfg()
-    args = docopt(__doc__)
+    args = docopt(__doc__ or "")
     results = []
 
     # We must uninstall sty in order to make this script and sphix import sty from the
     # subdirectory ./sty and not from site-packages.
-    sp.run(["pipenv", "uninstall", "sty", "--skip-lock"])
+    sp.run(["poetry", "remove", "sty"], stderr=sp.PIPE)
 
-    if args['update'] and args['src']:
-        results.append(update_src(args['<rev>']))
+    if args["update"] and args["src"]:
+        results.append(update_src(args["<rev>"]))
 
-    if args['build']:
+    if args["build"]:
         results.append(build(cfg))
 
-    if args['deploy']:
+    if args["deploy"]:
         results.append(deploy(cfg))
 
     if any(results):
         print_summary(results)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         run()
     except KeyboardInterrupt:
-        print('\n\nScript aborted by user.')
+        print("\n\nScript aborted by user.")
